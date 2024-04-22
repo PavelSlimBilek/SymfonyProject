@@ -27,4 +27,12 @@ class ExampleController extends AbstractController
         return $this->render('view.html.twig');
     }
 
+    #[Route('/view/{name}', name: 'view_param')]
+    public function viewParam($name) : Response
+    {
+        return $this->render('view_param.html.twig', [
+            'name' => $name,
+        ]);
+    }
+
 }
