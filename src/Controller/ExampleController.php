@@ -21,4 +21,10 @@ class ExampleController extends AbstractController
         return new Response("Hello {$name}!");
     }
 
+    #[Route('/view', name: 'view')]
+    public function view() : Response
+    {
+        return $this->render('view.html.twig');
+    }
+
 }
