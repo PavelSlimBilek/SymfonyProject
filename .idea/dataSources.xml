@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
-    <data-source source="LOCAL" name="postgres@localhost" uuid="df3a4255-f3dd-4852-990e-c7c194bfefc9">
+    <data-source source="LOCAL" name="symphonyApp" uuid="c74f0cdf-7a2c-44fd-b44d-d030a5da023b">
       <driver-ref>postgresql</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>org.postgresql.Driver</jdbc-driver>
