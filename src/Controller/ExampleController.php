@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Service\ExampleService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -9,30 +10,24 @@ use Symfony\Component\Routing\Annotation\Route;
 class ExampleController extends AbstractController
 {
 
-    #[Route('/hello', name: 'hello')]
-    public function hello() : Response
+    private ExampleService $service;
+
+    public function __construct(ExampleService $service)
     {
-        return new Response("Hello World!");
+        $this->service = $service;
     }
 
-    #[Route('/hello/{name}', name: 'hello_param')]
-    public function helloParam($name) : Response
+    #[Route('/show', name: 'show_all')]
+    public function showAll(): Response
     {
-        return new Response("Hello {$name}!");
+        return $this->render('show_all.html.twig', ['entities' => $this->service->getAll()]);
     }
 
-    #[Route('/view', name: 'view')]
-    public function view() : Response
+    #[Route('/save/{name}', name: 'save')]
+    public function save(string $name): Response
     {
-        return $this->render('view.html.twig');
-    }
-
-    #[Route('/view/{name}', name: 'view_param')]
-    public function viewParam($name) : Response
-    {
-        return $this->render('view_param.html.twig', [
-            'name' => $name,
-        ]);
+        $this->service->save($name);
+        return $this->redirectToRoute('show_all');
     }
 
 }
