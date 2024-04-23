@@ -1,0 +1,25 @@
+docker-compose exec php bin/console make:migration  *** after start ***
+docker-compose exec php bin/console doctrine:migration:migrate
+docker-compose exec php bin/console doctrine:schema:validate
+docker-compose exec php bin/console doctrine:migrations:status
+
+
+docker-compose exec php bin/console doctrine:cache:clear-metadata
+docker-compose php bin/console cache:clear
+
+
+docker-compose exec php bin/console doctrine:database:create
+docker-compose exec php bin/console doctrine:query:sql 'SELECT 1'
+docker-compose exec php bin/console doctrine:query:sql 'SELECT * FROM example_entity'
+
+
+docker exec -it symfonyproject-db-1 psql -U admin -d symfonyApp
+docker exec -it symfonyproject-db-1 bash
+
+
+docker-compose ps
+
+
+docker-compose exec php composer require symfony/maker-bundle --dev
+docker-compose exec php composer require doctrine/doctrine-migrations-bundle "^3.0"
+docker compose exec php composer require symfony/twig-bundle
